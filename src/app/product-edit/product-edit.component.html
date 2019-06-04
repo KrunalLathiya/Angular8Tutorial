@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Product Name</label>
+        <input type="text" class="form-control" 
+          formControlName="ProductName" 
+          #ProductName 
+          [(ngModel)] = "product.ProductName"/>
+      </div>
+      <div *ngIf="angForm.controls['ProductName'].invalid && (angForm.controls['ProductName'].dirty || angForm.controls['ProductName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['ProductName'].errors.required">
+          Product Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Product Description </label>
+        <textarea class="form-control" rows = 7 cols = "5"
+        formControlName="ProductDescription" 
+        #ProductDescription [(ngModel)] = "product.ProductDescription"></textarea>
+      </div>
+      <div *ngIf="angForm.controls['ProductDescription'].invalid && (angForm.controls['ProductDescription'].dirty || angForm.controls['ProductDescription'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['ProductDescription'].errors.required">
+          Product Description is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Product Price</label>
+        <input type="text" class="form-control" 
+          formControlName="ProductPrice" 
+          #ProductPrice
+          [(ngModel)] = "product.ProductPrice"
+        />
+      </div>
+      <div *ngIf="angForm.controls['ProductPrice'].invalid && (angForm.controls['ProductPrice'].dirty || angForm.controls['ProductPrice'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['ProductPrice'].errors.required">
+          Product Price is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click) = "updateProduct(ProductName.value, ProductDescription.value, ProductPrice.value)" type="submit" class="btn btn-primary"
+        [disabled]="angForm.invalid" >
+          Update Product
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
